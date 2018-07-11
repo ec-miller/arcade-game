@@ -1,21 +1,26 @@
 // Enemies our player must avoid
-const Enemy = function() {
+const Enemy = function(x,y,speed) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
 	this.sprite = 'images/enemy-bug.png';
-	this.x = 1;
-	this.y = 2;
+	this.x = x;
+	this.y = y;
+	this.speed = speed;
 };
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
-Enemy.prototype.update = function(dt) {
-    // You should multiply any movement by the dt parameter
-    // which will ensure the game runs at the same speed for
-    // all computers.
+Enemy.prototype.update = function(dt) { 
+	const thiss = this
+    setTimeout( function() {
+		if (thiss.x > 1250) {
+			thiss.x = -100;
+		}
+		else { thiss.x += thiss.speed; }
+	},1*dt);
 };
 
 // Draw the enemy on the screen, required method for game
@@ -30,22 +35,11 @@ Enemy.prototype.render = function() {
 const Player = function() {
 	this.sprite = 'images/char-princess-girl.png';
 	this.x = 200;
-	this.y = 300;
+	this.y = 383;
 };
 
 Player.prototype.update = function(direction) {
-	if (direction === 'left') {
-		this.x -= 100;
-	}
-	else if (direction === 'right') {
-		this.x += 100;
-	}
-	else if (direction === 'up') {
-		this.y -= 83;
-	}
-	else if (direction === 'down') {
-		this.y += 83;
-	}
+	
 };
 
 Player.prototype.render = function() {
@@ -53,13 +47,38 @@ Player.prototype.render = function() {
 };
 
 Player.prototype.handleInput = function(event) {
-	this.update(event);
+	if (this.x === 0 & event === 'left' ||
+		this.x === 400 & event === 'right' ||
+		this.y === -32 & event === 'up' ||
+		this.y === 383 & event === 'down') {
+		return
+	}
+	else {
+		if (event === 'left') {
+			this.x -= 100;
+		}
+		else if (event === 'right') {
+			this.x += 100;
+		}
+		else if (event === 'up') {
+			this.y -= 83;
+		}
+		else if (event === 'down') {
+			this.y += 83;
+		}
+	}
 };
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-const allEnemies = [];
+const enemy1 = new Enemy(-150,217,3);
+const enemy2 = new Enemy(-900,134,5);
+const enemy3 = new Enemy(-575,49,9);
+const enemy4 = new Enemy(-622,217,6);
+const enemy5 = new Enemy(-1352,134,2);
+const enemy6 = new Enemy(-250,49,3);
+const allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5, enemy6];
 const player = new Player();
 
 
