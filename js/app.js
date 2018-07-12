@@ -41,7 +41,7 @@ Player.prototype.update = function(direction) {
 		scoreUpdate();
 	}
 	allEnemies.forEach(function (enemy) {
-		if (thiss.x > enemy.x - 25 && thiss.x < enemy.x + 30
+		if (thiss.x > enemy.x - 72 && thiss.x < enemy.x + 72
 			&& thiss.y > enemy.y - 20 && thiss.y < enemy.y + 20) {
 			thiss.x = 200;
 			thiss.y = 383;
