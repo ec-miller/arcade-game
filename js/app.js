@@ -31,7 +31,7 @@ const Player = function() {
 	this.y = 383;
 };
 
-//handles behavior when player encounters enemies and gets to the water
+//handles behavior when player encounters enemies and gets to the water, updates score
 Player.prototype.update = function(direction) {
 	const thiss = this
 	if (thiss.y === -32) {
@@ -80,7 +80,7 @@ Player.prototype.handleInput = function(event) {
 	}
 };
 
-//instantiates these awesome objects
+//instantiates these awesome objects with random speed / starting points
 const enemy1 = new Enemy(-Math.floor(Math.random() * 150)-150, 49, Math.floor(Math.random() * 3));
 const enemy2 = new Enemy(-Math.floor(Math.random() * 900) - 150, 49, Math.floor(Math.random() * 13));
 const enemy3 = new Enemy(-Math.floor(Math.random() * 1200) - 150, 49, Math.floor(Math.random() * 9));
@@ -93,11 +93,8 @@ const enemy9 = new Enemy(-Math.floor(Math.random() * 850) - 150, 217, Math.floor
 const allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5, enemy6, enemy7, enemy8, enemy9];
 const player = new Player();
 
-allEnemies.forEach(function (enemy) {
-	console.log(enemy.x)
-	});
 
-//listens for key presses and sends the keys to your
+//listens for key presses and sends the keys to player
 document.addEventListener('keyup', function(e) {
     var allowedKeys = {
         37: 'left',
