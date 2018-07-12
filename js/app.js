@@ -39,7 +39,20 @@ const Player = function() {
 };
 
 Player.prototype.update = function(direction) {
-	
+	const thiss = this
+	if (thiss.y === -32) {
+		console.log('tha fuck')
+		thiss.x = 200;
+		thiss.y = 383;
+	}
+	allEnemies.forEach(function (enemy) {
+		if (thiss.x > enemy.x - 25 && thiss.x < enemy.x + 30
+			&& thiss.y > enemy.y - 20 && thiss.y < enemy.y + 20) {
+			console.log('hey there')
+			thiss.x = 200;
+			thiss.y = 383;
+		}
+	});	
 };
 
 Player.prototype.render = function() {
