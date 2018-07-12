@@ -7,7 +7,7 @@ To play the game visit this [page](https://ec-miller.github.io/arcade-game) or d
 
 ## Technologies
 - JavaScript
-- HTML5
+- HTML Canvas
 - CSS3
 
 ## History
