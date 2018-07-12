@@ -1,3 +1,20 @@
 body {
     text-align: center;
 }
+
+.scorePanel {
+    margin: auto;
+    max-width: 505px;
+}
+
+.score {
+    float: right;
+    font-weight: bold;
+    margin-right: .5em;
+}
+
+.highScore {
+    float: left;
+    font-weight: bold;
+    margin-left: .5em;
+}

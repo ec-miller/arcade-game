@@ -37,12 +37,16 @@ Player.prototype.update = function(direction) {
 	if (thiss.y === -32) {
 		thiss.x = 200;
 		thiss.y = 383;
+		score++;
+		scoreUpdate();
 	}
 	allEnemies.forEach(function (enemy) {
 		if (thiss.x > enemy.x - 25 && thiss.x < enemy.x + 30
 			&& thiss.y > enemy.y - 20 && thiss.y < enemy.y + 20) {
 			thiss.x = 200;
 			thiss.y = 383;
+			score=0;
+			scoreUpdate();
 		}
 	});	
 };
@@ -77,15 +81,21 @@ Player.prototype.handleInput = function(event) {
 };
 
 //instantiates these awesome objects
-const enemy1 = new Enemy(-150,217,3);
-const enemy2 = new Enemy(-900,134,5);
-const enemy3 = new Enemy(-575,49,9);
-const enemy4 = new Enemy(-622,217,6);
-const enemy5 = new Enemy(-1352,134,2);
-const enemy6 = new Enemy(-250,49,3);
-const allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5, enemy6];
+const enemy1 = new Enemy(-Math.floor(Math.random() * 150)-150, 49, Math.floor(Math.random() * 3));
+const enemy2 = new Enemy(-Math.floor(Math.random() * 900) - 150, 49, Math.floor(Math.random() * 13));
+const enemy3 = new Enemy(-Math.floor(Math.random() * 1200) - 150, 49, Math.floor(Math.random() * 9));
+const enemy4 = new Enemy(-Math.floor(Math.random() * 575) - 150, 134, Math.floor(Math.random() * 2));
+const enemy5 = new Enemy(-Math.floor(Math.random() * 622) - 150, 134, Math.floor(Math.random() * 6));
+const enemy6 = new Enemy(-Math.floor(Math.random() * 112) - 150, 134, Math.floor(Math.random() * 10));
+const enemy7 = new Enemy(-Math.floor(Math.random() * 1352) - 150, 217, Math.floor(Math.random() * 1));
+const enemy8 = new Enemy(-Math.floor(Math.random() * 250) - 150, 217, Math.floor(Math.random() * 4));
+const enemy9 = new Enemy(-Math.floor(Math.random() * 850) - 150, 217, Math.floor(Math.random() * 7));
+const allEnemies = [enemy1, enemy2, enemy3, enemy4, enemy5, enemy6, enemy7, enemy8, enemy9];
 const player = new Player();
 
+allEnemies.forEach(function (enemy) {
+	console.log(enemy.x)
+	});
 
 //listens for key presses and sends the keys to your
 document.addEventListener('keyup', function(e) {
@@ -98,3 +108,17 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+
+//score board functionality
+var score = 0;
+var highScore = 0;
+function scoreUpdate() {
+	const scoreKeeper = document.getElementsByClassName("score");
+	scoreKeeper[0].innerHTML = `Score: ${score}`;
+	if (score > highScore) {
+		const highScoreKeeper = document.getElementsByClassName("highScore");
+		highScore = score;
+		highScoreKeeper[0].innerHTML = `High Score: ${highScore}`;
+	}
+}
+
